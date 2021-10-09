@@ -1,8 +1,7 @@
 <template>
-  <div>
-      <h2>Student Name - {{name}}</h2>
-      <h2>Student Sex - {{sex}}</h2>
-      <input type="text" v-fbind:value="name">
+  <div class="demo">
+      <h2 class="title">Student Name - {{name}}</h2>
+      <h2 class="atguigu">Student Sex - {{sex}}</h2>
   </div>
 </template>
 
@@ -17,3 +16,12 @@ export default {
     }
 }
 </script>
+
+<style lang="less">
+    .demo{
+        background-color:pink;
+        .atguigu{
+            font-size: 50px;
+        }
+    }
+</style>

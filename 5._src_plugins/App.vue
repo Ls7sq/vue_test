@@ -15,9 +15,3 @@ export default {
     components:{Student, School},
 }
 </script>
-
-<style>
-  .title{
-    color: cornsilk;
-  }
-</style>
