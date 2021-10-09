@@ -8,6 +8,8 @@ import App from './App.vue'
 //关闭vue生产提示
 Vue.config.productionTip = false
 
+function EXtend(){}
+
 //创建Vue实例对象----vm
 new Vue({
   el:"#app",
