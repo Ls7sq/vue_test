@@ -35,6 +35,9 @@ export default {
       },
       getStudentName(name,...params){
         console.log('demo invoke',name,JSON.stringify(params))
+      },
+      m1(){
+        console.log('m1 invoke')
       }
     },
     mounted() {
@@ -42,6 +45,7 @@ export default {
         // this.$refs.student.$once('atguigu',this.getStudentName) 绑定自定义事件 一次性使用
           this.$refs.student.$on('atguigu',this.getStudentName)
       }, 3000);
+      this.$refs.student.$on('demo',this.m1)
     },
 }
 </script>
