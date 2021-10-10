@@ -1,7 +1,14 @@
 <template>
     <li>
         <label>
-            <input type="checkbox" :checked="todo.done"/>
+                                                        <!-- 1.click事件 -->
+            <!-- <input type="checkbox" :checked="todo.done" @click="handleCheck(todo.id)" /> -->
+
+                                                        <!-- 2.change事件 -->
+            <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)" />
+
+            <!-- 👇可以不借助一层层传递数据实现相同功能，但是不推荐，毕竟子级直接修改了props -->
+            <input type="checkbox" v-model="todo.done" />
             <span>{{todo.title}}</span>
         </label>
         <button class="btn btn-danger" style="display:none">删除</button>
@@ -12,7 +19,14 @@
     export default {
         name:"MyItem",
         //声明接受todo对象
-        props:['todo']
+        props:['todo','checkTodo'],
+        methods:{
+            handleCheck(id){
+                //通知App组件将对应的todo对象的done值取翻
+                console.log(this)
+                this.checkTodo(id)
+            }
+        }
     }
 </script>
 
