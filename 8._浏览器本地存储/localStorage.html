@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage</title>
+</head>
+<body>
+    <h2>localStorage</h2>
+    <button onclick="saveData()">save the data</button>
+    <button onclick="readData()">read the data</button>
+    <button onclick="deleteData()">delete the data</button>
+    <button onclick="deleteAllData()">clear the data</button>
+
+
+    <script type="text/javascript">
+
+        let p = {name:"zhangsan", age:18}
+
+        function saveData(){
+            localStorage.setItem('msg','hello')
+
+            localStorage.setItem('person',JSON.stringify(p))
+        }
+
+        function readData(){
+            let readResult1 = localStorage.getItem('msg')
+            let readResult2 = localStorage.getItem('person')
+            console.log(readResult1)
+
+            console.log(JSON.parse(readResult2))
+        }
+
+        function deleteData(){
+            localStorage.removeItem('msg')
+        }
+
+        function deleteAllData(){
+            localStorage.clear()
+        }
+    </script>
+</body>
+</html>
