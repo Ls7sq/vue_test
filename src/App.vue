@@ -3,8 +3,8 @@
     <div id="root">
       <div class="todo-container">
         <div class="todo-wrap">
-          <MyHeader/>
-          <MyList/>
+          <MyHeader :addTodo="addTodo" />
+          <MyList :todos="todos" />
           <MyFooter/>
         </div>
       </div>
@@ -21,6 +21,18 @@ import MyList from './components/MyList.vue'
 export default {
     name:'App',
     components:{MyHeader,MyFooter,MyList},
+    data() {
+      return {
+        todos:[
+          {id:'001',title:"chouyan",done:true},
+        ]
+      }
+    },
+    methods:{
+      addTodo(todoObj){
+        this.todos.unshift(todoObj)
+      }
+    }
 }
 </script>
 
