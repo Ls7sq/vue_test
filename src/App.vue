@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import pubsub from 'pubsub-js'
 //引入School组件
 import MyHeader from './components/MyHeader.vue'
 import MyFooter from './components/MyFooter.vue'
@@ -41,7 +42,7 @@ export default {
         })
       },
       //删除一个todo
-      deleteTodo(id){
+      deleteTodo(_,id){
         this.todos = this.todos.filter( todo => todo.id !== id)
       },
       //全选或者取消全选
@@ -65,10 +66,13 @@ export default {
     },
     mounted() {
       this.$bus.$on('checkTodo',this.checkTodo)
-      this.$bus.$on('deleteTodo',this.deleteTodo)
+      //this.$bus.$on('deleteTodo',this.deleteTodo)
+      this.pubId = pubsub.subscribe('deleteTodo',this.deleteTodo)
     },
     beforeDestroy(){
-      this.$bus.$off(['checkTodo','deleteTodo'])
+      //this.$bus.$off(['checkTodo','deleteTodo'])
+      this.$bus.$off('checkTodo')
+      pubsub.unsubscribe(this.pubId)
     }
 }
 </script>
