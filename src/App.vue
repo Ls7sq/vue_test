@@ -23,9 +23,8 @@ export default {
     components:{MyHeader,MyFooter,MyList},
     data() {
       return {
-        todos:[
-          {id:'001',title:"chouyan",done:true},
-        ]
+        todos: JSON.parse(localStorage.getItem('todos')) || []
+          // {id:'001',title:"chouyan",done:true},
       }
     },
     methods:{
@@ -55,7 +54,15 @@ export default {
           return !todo.done
         })
       }
-    }
+    },
+    watch: {
+      todos:{
+        deep:true,
+        handler(value){
+          localStorage.setItem('todos',JSON.stringify(value))
+        }
+      }
+    },
 }
 </script>
 
