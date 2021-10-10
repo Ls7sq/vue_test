@@ -4,8 +4,7 @@
         :key="todoObj.id" 
          v-for="todoObj in todos" 
          :todo="todoObj" 
-         :checkTodo="checkTodo"
-         :deleteTodo='deleteTodo'/>
+         />
     </ul>
 </template>
 
@@ -20,7 +19,7 @@
           }
         },
         //接收来自App的传入，出现在MyList这个组件的实例对象vc身上，在vc身上的东西，上面👆模版可直接用
-        props:['todos','checkTodo','deleteTodo']
+        props:['todos']
     }
 </script>
 

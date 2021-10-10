@@ -4,7 +4,7 @@
       <div class="todo-container">
         <div class="todo-wrap">
           <MyHeader @addTodo="addTodo" />
-          <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo='deleteTodo'/>
+          <MyList :todos="todos" />
           <MyFooter :todos="todos" @chechAllTodo='chechAllTodo' @clearAllTodo='clearAllTodo'/>
         </div>
       </div>
@@ -63,6 +63,13 @@ export default {
         }
       }
     },
+    mounted() {
+      this.$bus.$on('checkTodo',this.checkTodo)
+      this.$bus.$on('deleteTodo',this.deleteTodo)
+    },
+    beforeDestroy(){
+      this.$bus.$off(['checkTodo','deleteTodo'])
+    }
 }
 </script>
 
