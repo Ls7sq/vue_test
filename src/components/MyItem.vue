@@ -24,7 +24,7 @@
             //勾选或者取消勾选
             handleCheck(id){
                 //通知App组件将对应的todo对象的done值取翻
-                console.log(this)
+                //console.log(this)
                 this.checkTodo(id)
             },
             //删除

@@ -1,35 +1,52 @@
 <template>
-    <div class="todo-footer">
+    <div v-show="total" class="todo-footer">
         <label>
-            <input type="checkbox"/>
+          <!-- 此时的计算元素isAll只有getter，checkbox的是否checked的属性由isAll返回的布尔值决定 -->
+            <!-- <input type="checkbox" :checked="isAll" @change="checkAll"/> -->
+
+          <!-- 用v-model绑定 isAll 这样点击checkbox就会有setter的功能参与进来，计算属性不可再用单一的getter简写形式-->
+          <!-- 要用计算属性的完整写法。这时候也能省略checkAll的methods了 -->
+             <input type="checkbox" v-model="isAll"/>
         </label>
         <span>
-            <span>已完成{{doneTotal}} </span> / 全部{{todos.length}}
+            <span>已完成{{doneTotal}} </span> / 全部{{total}}
         </span>
-        <button class="btn btn-danger">清除已完成任务</button>
+        <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
     </div>
 </template>
 
 <script>
     export default {
         name:"MyFooter",
-        props:['todos'],
+        props:['todos','chechAllTodo','clearAllTodo'],
         computed:{
+          total(){
+            return this.todos.length
+          },
           doneTotal(){
-            //1.method1
-            // let i = 0
-            // this.todos.forEach(todo => {
-            //   if (todo.done) i++ });
-            //   return i
-
-            //reduce method step by step
-            // const x = this.todos.reduce((pre, current)=>{
-            //   console.log('@',pre,current)
-            //   return pre + (this.todos.done? 1:0)
-            // },0)
-            // console.log('x= ',x)//length
-
             return this.todos.reduce((pre, todo)=> pre+( todo.done ? 1 : 0),0)
+          },
+          // isAll(){
+          //   return this.doneTotal===this.total && this.total>0
+          // }
+          isAll:{
+            get(){
+              return this.doneTotal===this.total && this.total>0
+            },
+            set(value){
+              //console.log(value) 
+              this.chechAllTodo(value)
+            }
+          }
+        },
+        methods: {
+          // checkAll(e){
+          //   this.chechAllTodo(e.target.checked)
+          // }
+          clearAll(){
+            if (confirm('Are you sure?')) {
+              this.clearAllTodo()              
+            }
           }
         },
     }
