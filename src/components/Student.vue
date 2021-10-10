@@ -28,12 +28,12 @@ export default {
         sendStudentName(){
             //触发Student组件实例身上的atguigu事件
             this.$emit('atguigu',this.name,777,888,'checkcheck')
-            this.$emit('demo')
+            //this.$emit('demo')
         },
         unbind(){
-            //this.$off('atguigu')//解绑一个自定义事件
+            this.$off('atguigu')//解绑一个自定义事件
             //this.$off(['atguigu','demo'])//解除多个自定义事件
-            this.$off()//解除所有自定义事件
+            //this.$off()//解除所有自定义事件
         },
         death(){
             this.$destroy()//销毁了当前Student组件的实例,销毁之后所有Student实例的自定义事件全都不奏效了
