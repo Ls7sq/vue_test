@@ -23,21 +23,17 @@ export default {
     h1{
         background-color: orange;
     }
-
-    .hello-enter-active{
-        animation: atguigu 1s;
+/* 进入的起点 */    /* 离开的终点 */
+    .hello-enter, .hello-leave-to{
+        transform: translate(-100%);
+    }
+/* 进入的终点 */       /* 离开的起点 */
+    .hello-enter-to, .hello-leave{
+        transform: translate(0);
     }
 
-    .hello-leave-active{
-        animation: atguigu 1s reverse;
+    .hello-enter-active, .hello-leave-active{
+        transition: 1s
     }
 
-    @keyframes atguigu {
-        from{
-            transform: translate(-100%);
-        }
-        to{
-            transform: translate(0px);
-        }
-    }
 </style>
