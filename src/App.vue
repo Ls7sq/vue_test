@@ -11,7 +11,7 @@ export default {
     name:'App',
     methods: {
       getStudents(){
-        axios.get('http://localhost:8080/api/students')
+        axios.get('http://localhost:8080/api1/students')
              .then(response=>{
                console.log('Successful', response.data)
              },error=>{
@@ -19,7 +19,7 @@ export default {
              })
       },
       getCars(){
-          axios.get('http://localhost:8080/car/cars')
+          axios.get('http://localhost:8080/api2/cars')
              .then(response=>{
                console.log('Successful', response.data)
              },error=>{
