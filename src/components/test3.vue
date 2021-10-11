@@ -6,8 +6,8 @@
             enter-active-class="animate__swing"
             leave-active-class="animate__backOutUp"
             appear>
-            <h1 v-show="!isShow" key="1">hello</h1>
-            <h1 v-show="isShow" key="2">hello</h1>
+            <h1 v-show="isShow" key="1">hello</h1>
+            <!-- <h1 v-show="isShow" key="2">hello</h1> -->
         </transition-group>
     </div>
 </template>
@@ -29,6 +29,4 @@ export default {
     h1{
         background-color: orange;
     }
-
-
 </style>
