@@ -15,6 +15,7 @@
                 type="text" 
                 :value="todo.title"
                 @blur="handleBlur(todo,$event)"
+                ref="inputTitle"
             >
         </label>
         <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
@@ -52,7 +53,10 @@
                 }else{
                     //todo身上没有isEdit给他添加这个属性并赋予true
                     this.$set(todo,'isEdit',true)
-                }  
+                }
+                this.$nextTick(function(){
+                    this.$refs.inputTitle.focus()  
+                })
             },
             //失去焦点回调(真正执行修改逻辑)
             handleBlur(todo,e){
