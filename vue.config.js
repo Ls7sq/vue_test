@@ -20,5 +20,10 @@ module.exports = {
     //   // 输出文件名会被推导为 `subpage.html`。
     //   subpage: 'src/subpage/main.js'
     // },
-    lintOnSave:false
+    lintOnSave:false,//关闭语法检查
+
+    //开启代理服务器
+    devServer:{
+      proxy:'http://localhost:5000'
+    }
   }
