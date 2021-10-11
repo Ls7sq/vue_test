@@ -9,9 +9,16 @@
 
             <!-- 👇可以不借助一层层传递数据实现相同功能，但是不推荐，毕竟子级直接修改了props -->
             <!-- <input type="checkbox" v-model="todo.done" /> -->
-            <span>{{todo.title}}</span>
+            <span v-show="!todo.isEdit">{{todo.title}}</span>
+            <input 
+                v-show="todo.isEdit" 
+                type="text" 
+                :value="todo.title"
+                @blur="handleBlur(todo,$event)"
+            >
         </label>
         <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+        <button v-show="!todo.isEdit" class="btn btn-edit" @click="handleEdit(todo)">Edit</button>
     </li>
 </template>
 
@@ -36,6 +43,25 @@
                     //this.$bus.$emit('deleteTodo',id)
                     pubsub.publish('deleteTodo',id)
                 }
+            },
+            //编辑
+            handleEdit(todo){
+                // todo.isEdit = true
+                if (todo.hasOwnProperty('isEdit')) {
+                    todo.isEdit = true
+                }else{
+                    //todo身上没有isEdit给他添加这个属性并赋予true
+                    this.$set(todo,'isEdit',true)
+                }  
+            },
+            //失去焦点回调(真正执行修改逻辑)
+            handleBlur(todo,e){
+                this.todo.isEdit = false
+                //console.log(e.target.value)
+                if (!e.target.value.trim()) {
+                    return alert('输入不为空')
+                }
+                this.$bus.$emit('updateTodo',todo.id, e.target.value)
             }
         }
     }
