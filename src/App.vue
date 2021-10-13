@@ -1,16 +1,30 @@
 <template>
     <div class="container">
       <Category title="Food">
-        <img src="https://s3.ax1x.com/2021/01/16/srJlq0.jpg" alt="">
+        <img slot="center" src="https://s3.ax1x.com/2021/01/16/srJlq0.jpg" alt="">
+        <a slot="footer" href="http://youtube.com">Click me to link</a>
       </Category>
       <Category title="Game">
-        <ul>
+        <ul slot="center">
             <li v-for="(game, index) in games" :key="index">{{game}}</li>
         </ul>
+        <div slot="footer" class="foot">
+          <a href="">Single mode</a>
+          <a href="">Multipalyer mode</a>
+        </div>
       </Category>
 
       <Category title="Films">
-        <video controls src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+        <video slot="center" controls src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+        <template v-slot:footer>
+         <div class="foot">
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+          </div>
+          <h4>welcome</h4>
+        </template>
+
       </Category>
     </div>
 </template>
@@ -34,7 +48,7 @@ export default {
 </script>
 
 <style lang="css">
-  .container{
+  .container, .foot, h4{
     display: flex;
     justify-content: space-around;
   }

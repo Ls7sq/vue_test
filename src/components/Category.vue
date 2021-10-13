@@ -2,7 +2,9 @@
   <div class="category">
       <h3>{{title}}</h3>
       <!-- 定义一个插槽(等着组件的使用者进行填充) -->
-      <slot></slot>
+      <slot name="center"></slot>
+
+      <slot name="footer"></slot>
 
 
   </div>
