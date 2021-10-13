@@ -2,13 +2,28 @@
     <div class="container">
 
       <Category title="Game">
-        <ul slot="center">
-            <li v-for="(game, index) in games" :key="index">{{game}}</li>
-        </ul>
-        <div slot="footer" class="foot">
-          <a href="">Single mode</a>
-          <a href="">Multipalyer mode</a>
-        </div>
+        <template slot-scope="shiqi" slot="chacao">
+          <ul>
+            <li v-for="(game, index) in shiqi.games" :key="index">{{game}}</li>
+          </ul>
+          <h4>{{shiqi}}</h4>
+        </template>
+      </Category>
+
+      <Category title="Game">
+        <template slot-scope="{games}" slot="chacao">
+          <ol>
+              <li v-for="(game, index) in games" :key="index">{{game}}</li>
+          </ol>
+          <h4>{{games}}</h4>
+        </template>
+      </Category>
+
+      <Category title="Game">
+        <template slot-scope="shiqi" slot="chacao">
+          <h4 v-for="(game, index) in shiqi.games" :key="index">{{game}}</h4>
+          <h4>{{shiqi.msg}}</h4>
+        </template>
       </Category>
 
     </div>
@@ -20,11 +35,6 @@ import Category from './components/Category.vue'
 export default {
     name:'App',
     components:{Category},
-    data() {
-      return {
-				games:['红色警戒','穿越火线','劲舞团','超级玛丽']
-      }
-    },
     methods: {
     },
 }
