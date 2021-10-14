@@ -6,10 +6,10 @@
     export default {
         name:'About',
         beforeDestroy(){
-          console.log('About组件被销毁了')
+          // console.log('About组件被销毁了')
         },
         mounted() {
-          console.log('About组件挂载完毕了')
+          // console.log('About组件挂载完毕了')
         },
 
     }

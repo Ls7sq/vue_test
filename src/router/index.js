@@ -12,19 +12,22 @@ import Detail from '../pages/Detail'
 const router = new VueRouter({
     routes: [
         {
-            name:'关于',
+            name:'guanyu',
             path:'/about',
             component:About
         },
         {
+            name:'zhuye',
             path:'/home',
             component:Home,
             children:[
                 {
+                    name:'xinwen',
                     path:'news',
                     component:News
                 },
                 {
+                    name:'xiaoxi',
                     path:'message',
                     component:Message,
                     children:[
@@ -58,5 +61,21 @@ const router = new VueRouter({
         },
     ]
 })
+
+//全局前置路由守卫——初始化的时候调用，每次路由切换之前被调用
+router.beforeEach((to, from, next)=>{
+    console.log(to,from)
+    if(to.name === 'xinwen' || to.path === '/home/message'){
+        if(localStorage.getItem('school')==='atguigu'){
+            next()
+        }else{
+            alert("没有权限看啊")
+        }
+    }else {
+        next()
+    }
+    
+})
+
 //暴露一个路由器
 export default router

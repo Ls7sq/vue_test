@@ -25,10 +25,10 @@
     export default {
         name:'Home',
         beforeDestroy(){
-          console.log('Home组件要被销毁了')
+          // console.log('Home组件要被销毁了')
         },
         mounted() {
-          console.log('Home组件挂载完毕了')
+          // console.log('Home组件挂载完毕了')
         },
     }
 </script>
