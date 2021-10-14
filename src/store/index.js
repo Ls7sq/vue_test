@@ -39,6 +39,8 @@ const mutations = {
 //准备state-用于存储数据
 const state = {
     sum:0,//当前的数字
+    school:'NUS',
+    subject:'Vue'
 }
 
 //准备一个getters 用于将state里的数据进行加工
