@@ -2,8 +2,10 @@
 import VueRouter from 'vue-router'
 
 //引入组件
-import About from '../components/About'
-import Home from '../components/Home'
+import About from '../pages/About'
+import Home from '../pages/Home'
+import News from '../pages/News'
+import Message from '../pages/Message'
 
 //创建一个路由器
 const router = new VueRouter({
@@ -14,7 +16,17 @@ const router = new VueRouter({
         },
         {
             path:'/home',
-            component:Home
+            component:Home,
+            children:[
+                {
+                    path:'news',
+                    component:News
+                },
+                {
+                    path:'message',
+                    component:Message
+                }
+            ]
         },
     ]
 })
