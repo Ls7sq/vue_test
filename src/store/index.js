@@ -15,16 +15,6 @@ const actions = {
     //     context.commit('JIAN',val)
     // },
     jiaOdd(context, val){
-        console.log('我在action中的jiaOdd里')
-        console.log("执行了很多业务")
-        context.dispatch('demo1',val)
-    },
-    demo1(context, val){
-        console.log('处理了很多业务--demo1')
-        context.dispatch('demo2',val)
-    },
-    demo2(context, val){
-        console.log('终极处理事务的demo2')
         if(context.state.sum % 2){
             context.commit('JIA',val)
         } 
@@ -51,11 +41,19 @@ const state = {
     sum:0,//当前的数字
 }
 
+//准备一个getters 用于将state里的数据进行加工
+const getters = {
+    bigSum(state){
+        return state.sum * 10
+    }
+}
+
 //创建store
 const store = new Vuex.Store({
     actions,
     mutations,
     state,
+    getters
 })
 
 //暴露store
