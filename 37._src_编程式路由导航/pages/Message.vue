@@ -56,9 +56,6 @@ export default {
             })
         }
     },
-    beforeDestroy(){
-      console.log("message组件即将被销毁")
-    }
 }
 </script>
 
