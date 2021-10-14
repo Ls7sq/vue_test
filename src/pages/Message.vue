@@ -1,22 +1,39 @@
 <template>
    <div>
         <ul>
-        <li>
-            <a href="/message1">message001</a>&nbsp;&nbsp;
-        </li>
-        <li>
-            <a href="/message2">message002</a>&nbsp;&nbsp;
-        </li>
-        <li>
-            <a href="/message/3">message003</a>&nbsp;&nbsp;
+        <li v-for="m in messageList" :key="m.id">
+            <!-- 跳转路由并携带query参数，to的字符串写法 -->
+            <!-- <router-link :to="`/home/message/detail?id=${m.id}&title=${m.title}`">{{m.title}}</router-link>&nbsp;&nbsp; -->
+        
+            <!-- 跳转路由并携带query参数，to的对象写法 -->
+            <router-link :to="{
+                path:'/home/message/detail',
+                query:{
+                    id: m.id,
+                    title: m.title,
+                }
+            }">
+                {{m.title}}
+            </router-link>&nbsp;&nbsp;
         </li>
         </ul>
+        <hr>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 export default {
-    name:'Message'
+    name:'Message',
+    data() {
+        return {
+            messageList:[
+                {id:'001',title:'message1'},
+                {id:'002',title:'message2'},
+                {id:'003',title:'message3'}
+            ]
+        }
+    },
 }
 </script>
 
