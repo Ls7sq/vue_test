@@ -6,60 +6,63 @@ import Vuex from 'vuex'
 //使用Vuex插件
 Vue.use(Vuex)
 
-//准备actions-用于响应组件中的动作
-const actions = {
-    // jia:function(context,val){
-    //     context.commit('JIA', val)
-    // },
-    // jian(context, val){
-    //     context.commit('JIAN',val)
-    // },
-    jiaOdd(context, val){
-        if(context.state.sum % 2){
-            context.commit('JIA',val)
-        } 
+//求和相关配置
+const countOptions={
+    namespaced:true,
+    actions:{
+        jiaOdd(context, val){
+            if(context.state.sum % 2){
+                context.commit('JIA',val)
+            } 
+        },
+        jiaWait(context, val){
+            setTimeout(()=>{
+                context.commit('JIA',val)
+            },500)
+        }        
     },
-    jiaWait(context, val){
-        setTimeout(()=>{
-            context.commit('JIA',val)
-        },500)
-    }
+    mutations:{
+        JIA:function(state, val){
+            state.sum += val
+        },
+        JIAN(state, val){
+            state.sum -= val
+        }        
+    },
+    state:{
+        sum:0,//当前的数字
+        school:'NUS',
+        subject:'Vue',        
+    },
+    getters:{
+        bigSum(state){
+            return state.sum * 10
+        }        
+    },
 }
 
-//准备mutations-用于操作数据(state)
-const mutations = {
-    JIA:function(state, val){
-        state.sum += val
+//人员管理相关配置
+const personOptions={
+    namespaced:true,
+    actions:{},
+    mutations:{
+        ADD_PERSON(state, personObj){
+            state.personList.unshift(personObj)
+        }        
     },
-    JIAN(state, val){
-        state.sum -= val
+    state:{
+        personList:[{id:'001',name:"zhangsan"}]        
     },
-    ADD_PERSON(state, personObj){
-        state.personList.unshift(personObj)
-    }
+    getters:{},
 }
 
-//准备state-用于存储数据
-const state = {
-    sum:0,//当前的数字
-    school:'NUS',
-    subject:'Vue',
-    personList:[{id:'001',name:"zhangsan"}]
-}
-
-//准备一个getters 用于将state里的数据进行加工
-const getters = {
-    bigSum(state){
-        return state.sum * 10
-    }
-}
 
 //创建store
 const store = new Vuex.Store({
-    actions,
-    mutations,
-    state,
-    getters
+    modules:{
+        countAbout:countOptions,
+        personAbout:personOptions
+    }
 })
 
 //暴露store
