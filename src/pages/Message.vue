@@ -14,7 +14,9 @@
                 }
             }">
                 {{m.title}}
-            </router-link>&nbsp;&nbsp;
+            </router-link>
+            <button @click="pushShow(m)">push查看</button>
+            <button @click="replaceShow(m)">replace查看</button>
         </li>
         </ul>
         <hr>
@@ -32,6 +34,26 @@ export default {
                 {id:'002',title:'message2'},
                 {id:'003',title:'message3'}
             ]
+        }
+    },
+    methods: {
+        pushShow(m){
+            this.$router.push({
+                name:'xiangqing',
+                query:{
+                    id: m.id,
+                    title: m.title,
+                }
+            })
+        },
+        replaceShow(m){
+             this.$router.replace({
+                name:'xiangqing',
+                query:{
+                    id: m.id,
+                    title: m.title,
+                }
+            })
         }
     },
 }
