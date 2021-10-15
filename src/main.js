@@ -3,14 +3,22 @@ import Vue from 'vue'
 //引入App
 import App from './App.vue'
 
-//引入ElementUI组件库
-import ElementUI from 'element-ui'
-//引入ElementUI全部样式
-import 'element-ui/lib/theme-chalk/index.css'
-
+//完整引入
+// //引入ElementUI组件库
+// import ElementUI from 'element-ui'
+// //引入ElementUI全部样式
+// import 'element-ui/lib/theme-chalk/index.css'
 
 //应用ElementUI
-Vue.use(ElementUI)
+//Vue.use(ElementUI)
+
+//按需引入
+import {Button, Row, DatePicker} from 'element-ui'
+
+Vue.component('atguigu-button', Button)
+Vue.component('atguigu-row', Row)
+Vue.component('atguigu-date-picker', DatePicker)
+
 
 //关闭Vue的生产提示
 Vue.config.productionTip = false
