@@ -15,7 +15,7 @@ const router = new VueRouter({
             name:'guanyu',
             path:'/about',
             component:About,
-            meta:{title:'AboutPage'}
+            meta:{isAuth:true, title:'AboutPage'}
         },
         {
             name:'zhuye',
@@ -28,17 +28,17 @@ const router = new VueRouter({
                     path:'news',
                     component:News,
                     meta:{isAuth:true, title:'NewsPage'},
-                        beforeEnter: (to, from, next) => {
-                            if(to.meta.isAuth){//判断是否需要鉴权
-                                if(localStorage.getItem('school')==='atguigu'){
-                                next()
-                            }else{
-                            alert("没有权限看啊")
-                            }
-                        }else {
-                            next()
-                        }
-                    }
+                    // beforeEnter: (to, from, next) => {
+                    //         if(to.meta.isAuth){//判断是否需要鉴权
+                    //             if(localStorage.getItem('school')==='atguigu'){
+                    //             next()
+                    //         }else{
+                    //         alert("没有权限看啊")
+                    //         }
+                    //     }else {
+                    //         next()
+                    //     }
+                    // }
                 },
                 {
                     name:'xiaoxi',
