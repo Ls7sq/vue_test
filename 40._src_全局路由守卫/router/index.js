@@ -27,18 +27,7 @@ const router = new VueRouter({
                     name:'xinwen',
                     path:'news',
                     component:News,
-                    meta:{isAuth:true, title:'NewsPage'},
-                        beforeEnter: (to, from, next) => {
-                            if(to.meta.isAuth){//判断是否需要鉴权
-                                if(localStorage.getItem('school')==='atguigu'){
-                                next()
-                            }else{
-                            alert("没有权限看啊")
-                            }
-                        }else {
-                            next()
-                        }
-                    }
+                    meta:{isAuth:true, title:'NewsPage'}
                 },
                 {
                     name:'xiaoxi',
@@ -78,21 +67,21 @@ const router = new VueRouter({
     ]
 })
 
-// //全局前置路由守卫——初始化的时候调用，每次路由切换之前被调用
-// router.beforeEach((to, from, next)=>{
-//     console.log('前置路由守卫',to,from)
+//全局前置路由守卫——初始化的时候调用，每次路由切换之前被调用
+router.beforeEach((to, from, next)=>{
+    console.log('前置路由守卫',to,from)
 
-//     if(to.meta.isAuth){//判断是否需要鉴权
-//         if(localStorage.getItem('school')==='atguigu'){
-//             next()
-//         }else{
-//             alert("没有权限看啊")
-//         }
-//     }else {
-//         next()
-//     }
-// })
-
+    if(to.meta.isAuth){//判断是否需要鉴权
+        if(localStorage.getItem('school')==='atguigu'){
+            next()
+        }else{
+            alert("没有权限看啊")
+        }
+    }else {
+        next()
+    }
+    
+})
 //全局后置路由守卫——初始化的时候调用，每次路由切换之后被调用
 router.afterEach((to, from)=>{
     console.log('后置路由守卫',to,from)
