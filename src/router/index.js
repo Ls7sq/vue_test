@@ -10,6 +10,7 @@ import Detail from '../pages/Detail'
 
 //创建一个路由器
 const router = new VueRouter({
+    mode:'hash',
     routes: [
         {
             name:'guanyu',
